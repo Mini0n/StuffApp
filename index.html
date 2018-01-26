@@ -11,13 +11,14 @@
   <div class="container-fluid p-4">
     
 
-    <div ng-app ng-init="qty=1; cost=2">
-      
+    <div ng-app="invoice1" ng-controller="inv1Ctrl as inv1">
+
+      <b>Invoice:</b>
       <div class="form-group row">
         <label for="inputQty" class="col-sm-1 col-form-label">Quantity:</label>
         <div class="col-sm-2">
-          <input id="inputQty" type="number" min="0" class="form-control "
-                 ng-model="qty">
+          <input id="inputQty" type="number" min="0" class="form-control"
+                 ng-model="inv1.qty" required>
         </div>
       </div>
 
@@ -25,14 +26,27 @@
         <label for="inputCost" class="col-sm-1 col-form-label">Cost:</label>
         <div class="col-sm-2">
           <input id="inputCost" type="number" min="0" class="form-control"
-                 ng-model="cost">
+                 ng-model="inv1.cost" required>
+        </div>
+        <div class="col-sm-1">
+          <select class="form-control" ng-model="inv1.inCurr">
+            <option ng-repeat="curr in inv1.currArr">{{ curr }}</option>
+          </select>
         </div>
       </div>
 
       <div class="form-group row">
         <label class="col-sm-1 col-form-label">Total:</label>
-        <label class="col-sm-1 col-form-label">{{qty*cost | currency}}</label>
+        <label class="col-sm-1 col-form-label"
+               ng-repeat="curr in inv1.currArr">
+          {{ inv1.total(curr) | currency }}
+        </label>
+        <div class="col-sm-1">
+            <button class="btn btn-secondary" ng-click="inv1.pay()">Pay</button>
+        </div>
       </div>
+
+      
 
     </div> 
  
@@ -51,5 +65,7 @@
 <!-- AngularJS -->
 <script src="angular1.4.6.js"></script>
 
+<!-- My code -->
+<script src="code0.js"></script>
 
 </html>
