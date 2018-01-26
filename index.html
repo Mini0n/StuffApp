@@ -8,9 +8,23 @@
 </head>
 <body>
  
-  <div class="container-fluid">
-    ola k ase?
- 
+  <div class="container-fluid p-2">
+    
+    <div ng-app ng-init="qty=1; cost=2">
+      <div class="row p-1">
+        <div class="col-sm-1">Quantity:</div>
+        <div class="col-sm-2"><input type="number" min="0" ng-model="qty"></div>
+      </div>
+      <div class="row p-1">
+        <div class="col-sm-1">Costs:</div>
+        <div class="col-sm-2"><input type="number" min="0" ng-model="cost"></div>
+      </div>
+      <div class="row p-1">
+        <div class="col-sm-1"><b>Total:</b></div>
+        <div class="col-sm-2"> {{qty*cost | currency }} </div>
+      </div>
+
+    </div> 
  
  
  
